@@ -4,6 +4,7 @@ const passport = require('passport');
 const userCtrl = require('../controllers/user.controller');
 const authCtrl = require('../controllers/auth.controller');
 const config = require('../config/config');
+const httpError = require('http-errors');
 
 const router = express.Router();
 module.exports = router;
@@ -14,6 +15,13 @@ router.get('/me', passport.authenticate('jwt', { session: false }), login);
 
 
 async function register(req, res, next) {
+  let isEmailExist = await userCtrl.checkForExistingUser(req.body.email)
+  if(isEmailExist){
+    const err = new httpError(400);
+    err.message = "Email already registered"
+    return next(err);
+  }
+
   let user = await userCtrl.insert(req.body);
   user = user.toObject();
   delete user.hashedPassword;

@@ -10,7 +10,8 @@ const userSchema = Joi.object({
 
 
 module.exports = {
-  insert
+  insert,
+  checkForExistingUser
 }
 
 async function insert(user) {
@@ -18,4 +19,8 @@ async function insert(user) {
   user.hashedPassword = bcrypt.hashSync(user.password, 10);
   delete user.password;
   return await new User(user).save();
+}
+
+async function checkForExistingUser(email){
+  return await User.findOne({email:email});
 }

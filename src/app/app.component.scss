@@ -1,2 +1,7 @@
 .wrapper-app {
 }
+
+::ng-deep .mat-snack-bar-container.mat-error{
+    background-color: #f44336;
+    color: #fff;
+}

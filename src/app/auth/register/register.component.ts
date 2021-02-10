@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 
 import { AuthService } from '@app/shared/services';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,7 @@ import { AuthService } from '@app/shared/services';
   styleUrls: ['../auth.component.scss'],
 })
 export class RegisterComponent {
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService, private _snackBar: MatSnackBar) {}
 
   passwordsMatchValidator(control: FormControl): ValidationErrors | null {
     const password = control.root.get('password');
@@ -45,15 +46,39 @@ export class RegisterComponent {
     return this.userForm.get('repeatPassword')!;
   }
 
+  validateAllFormFields(formGroup: FormGroup) {         //{1}
+    Object.keys(formGroup.controls).forEach(field => {  //{2}
+      const control = formGroup.get(field);             //{3}
+      if (control instanceof FormControl) {             //{4}
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {        //{5}
+        this.validateAllFormFields(control);            //{6}
+      }
+    });
+  }
+
   register(): void {
     if (this.userForm.invalid) {
+      this.validateAllFormFields(this.userForm)
       return;
     }
 
     const {  email, password, repeatPassword } = this.userForm.getRawValue();
 
-    this.authService.register( email, password, repeatPassword).subscribe(data => {
-      this.router.navigate(['']);
-    });
+    this.authService.register( email, password, repeatPassword).subscribe(      result => {
+      // Handle result
+      this.router.navigateByUrl('/');
+    },
+    error => {
+      var errorMsg = error.error.message ?? error.statusText
+      this._snackBar.open(errorMsg, '', {
+        duration: 5000,
+        panelClass: ['mat-error']
+      })
+    },
+    () => {
+      // 'onCompleted' callback.
+    }
+    );
   }
 }
