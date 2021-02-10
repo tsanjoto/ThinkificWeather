@@ -1,3 +1,16 @@
-<p>
-  home works!
-</p>
+<mat-card class="weather-card">
+  <mat-card-header>
+    <mat-card-title>Weather Finder</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="weatherForm">
+      <mat-form-field>
+        <input matInput type="search" placeholder="City name" class="search-input" formControlName="city" name="city" required>
+        <mat-icon matSuffix>search</mat-icon>
+        <mat-error *ngIf="city.invalid">City is required</mat-error>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+  </mat-card-actions>
+</mat-card>
