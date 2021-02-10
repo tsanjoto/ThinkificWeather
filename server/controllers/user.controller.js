@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
+const uuidAPIKey = require('uuid-apikey');
 const User = require('../models/user.model');
 
 const userSchema = Joi.object({
@@ -18,6 +19,7 @@ async function insert(user) {
   user = await Joi.validate(user, userSchema, { abortEarly: false });
   user.hashedPassword = bcrypt.hashSync(user.password, 10);
   delete user.password;
+  user.apiKey = uuidAPIKey.create({ 'noDashes': true }).apiKey;
   return await new User(user).save();
 }
 
