@@ -17,11 +17,9 @@
             }
         }
     }
-    &.ng-untouched{   
-        &.mat-focused{
-            .mat-icon{
-                color: #673ab7
-            }
+    &.mat-focused{
+        .mat-icon{
+            color: #673ab7
         }
     }
 }

@@ -4,7 +4,7 @@
   </mat-card-header>
   <mat-card-content>
     <form class="example-form" [formGroup]="weatherForm">
-      <mat-form-field>
+      <mat-form-field class="city-field">
         <input matInput type="search" placeholder="City name" class="search-input" formControlName="city" name="city" required>
         <mat-icon matSuffix>search</mat-icon>
         <mat-error *ngIf="city.invalid">City is required</mat-error>
