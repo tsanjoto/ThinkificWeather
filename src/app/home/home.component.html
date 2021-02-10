@@ -3,6 +3,15 @@
     <mat-card-title>Weather Finder</mat-card-title>
   </mat-card-header>
   <mat-card-content>
+    <div class="apikey-wrapper">
+      <div class="apikey-title mat-primary">API KEY:</div>
+      <div class="apikey-value">
+        {{user?.apiKey}}
+        <button mat-icon-button color="disabled" [cdkCopyToClipboard]="user?.apiKey">
+          <mat-icon>content_copy</mat-icon>
+        </button>
+      </div>
+    </div>
     <form class="example-form" [formGroup]="weatherForm">
       <mat-form-field class="city-field">
         <input matInput type="search" placeholder="City name" class="search-input" formControlName="city" name="city" required>

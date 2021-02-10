@@ -3,4 +3,5 @@ export interface User {
   createdAt: string;
   roles: string[];
   isAdmin: boolean;
+  apiKey: string;
 }

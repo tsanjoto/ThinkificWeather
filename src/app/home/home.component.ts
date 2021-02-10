@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from '@app/shared/interfaces';
+import { AuthService } from '@app/shared/services';
+import { merge, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +10,12 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  user: User | null;
 
-  constructor() { }
+  constructor(private authService: AuthService) { 
+    this.user = null;
+    authService.getUser().subscribe(val => this.user = val);
+  }
 
   ngOnInit() {
   }

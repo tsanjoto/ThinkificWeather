@@ -12,13 +12,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './shared/services';
+import { ClipboardModule } from '@angular/cdk/clipboard'
 
 export function appInitializerFactory(authService: AuthService) {
   return () => authService.checkTheUserOnTheFirstLoad();
 }
 
 @NgModule({
-  imports: [BrowserAnimationsModule, HttpClientModule, SharedModule, AppRoutingModule],
+  imports: [ClipboardModule, BrowserAnimationsModule, HttpClientModule, SharedModule, AppRoutingModule],
   declarations: [AppComponent, HeaderComponent, HomeComponent],
   providers: [
     {
