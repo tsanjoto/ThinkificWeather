@@ -76,8 +76,7 @@
     "definitions": {
       "User": {
         "required": [
-          "email",
-          "fullname"
+          "email"
         ],
         "properties": {
           "_id": {
@@ -87,9 +86,6 @@
           "email": {
             "type": "string",
             "uniqueItems": true
-          },
-          "fullname": {
-            "type": "string"
           },
           "createdAt": {
             "type": "string"
