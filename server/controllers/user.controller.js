@@ -12,7 +12,8 @@ const userSchema = Joi.object({
 
 module.exports = {
   insert,
-  checkForExistingUser
+  checkForExistingUser,
+  findUserWithApiKey
 }
 
 async function insert(user) {
@@ -25,4 +26,9 @@ async function insert(user) {
 
 async function checkForExistingUser(email){
   return await User.findOne({email:email});
+}
+
+async function findUserWithApiKey(apiKey){
+  console.log(apiKey)
+  return await User.findOne({apiKey:apiKey});
 }
