@@ -9,3 +9,11 @@ Setup MongoDB Atlas on free tier, and read through configs.
 Shifting through multiple MEAN stack sample codes for starting point (decided on https://github.com/linnovate/mean)
 Read through and solve config issues on setting up the starting code.
 Fix some styling issues, add some error handling and user creation and apikey.
+
+# Feb 10 2021
+8 hour,
+Create api key minor authentication,
+Connect frontend to backend api,
+Fetch openWeather result from backend,
+Frontend result process and clean up,
+Deployment tbd
