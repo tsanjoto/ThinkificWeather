@@ -11,6 +11,24 @@
     }
 }
 
+.weather-result-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weather-result-content{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.weather-result-main{
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+
 .apikey-wrapper{
     display: flex;
     margin-bottom: 16px;

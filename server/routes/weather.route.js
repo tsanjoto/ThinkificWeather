@@ -13,7 +13,7 @@ router.route('/').get(asyncHandler(getWeather));
 async function getWeather(req, res, next) {
   let isApiKeyValid = await userCtrl.findUserWithApiKey(req.query.apiKey); // could potentially be changed to authenticate via middleware
   
-  console.log(req.query.apiKey, isApiKeyValid)
+  //console.log(req.query.apiKey, isApiKeyValid)
   if(!isApiKeyValid){
     const err = new httpError(400);
     err.message = "API key is invalid"

@@ -29,6 +29,6 @@ async function checkForExistingUser(email){
 }
 
 async function findUserWithApiKey(apiKey){
-  console.log(apiKey)
+  //console.log(apiKey)
   return await User.findOne({apiKey:apiKey});
 }

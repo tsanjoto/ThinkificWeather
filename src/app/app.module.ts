@@ -13,13 +13,14 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AuthService } from './shared/services';
 import { ClipboardModule } from '@angular/cdk/clipboard'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 export function appInitializerFactory(authService: AuthService) {
   return () => authService.checkTheUserOnTheFirstLoad();
 }
 
 @NgModule({
-  imports: [ClipboardModule, BrowserAnimationsModule, HttpClientModule, SharedModule, AppRoutingModule],
+  imports: [MatProgressSpinnerModule, ClipboardModule, BrowserAnimationsModule, HttpClientModule, SharedModule, AppRoutingModule],
   declarations: [AppComponent, HeaderComponent, HomeComponent],
   providers: [
     {
